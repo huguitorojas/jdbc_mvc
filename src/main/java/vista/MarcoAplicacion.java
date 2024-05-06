@@ -1,11 +1,13 @@
 package vista;
 
+import controlador.ControladorBotonEjecuta;
+import controlador.ControladorCargaMenu;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class MarcoAplicacion extends JFrame {
+
     public MarcoAplicacion() {
         setTitle("Consulta BBDD");
         setBounds(500, 300, 400, 400);
@@ -33,10 +35,27 @@ public class MarcoAplicacion extends JFrame {
         JButton botonConsulta = new JButton("Consulta");
 
         add(botonConsulta, BorderLayout.SOUTH);
+        botonConsulta.addActionListener(new ControladorBotonEjecuta(this));
+
+        addWindowListener(new ControladorCargaMenu(this));
 
     }
+
+
 
     private JComboBox secciones;
     private JComboBox paises;
     private JTextArea resultado;
+
+    public JComboBox getSecciones(){
+        return this.secciones;
+    }
+
+    public JComboBox getPaises() {
+        return paises;
+    }
+
+    public JTextArea getResultado() {
+        return resultado;
+    }
 }
